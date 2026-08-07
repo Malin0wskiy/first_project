@@ -1,4 +1,21 @@
-tasks = []
+import json
+
+
+def load_tasks():
+    try:
+        with open("tasks.json", "r") as file:
+            return json.load(file)
+
+    except FileNotFoundError:
+        return []
+
+
+def save_tasks(tasks):
+    with open("tasks.json", "w") as file:
+        json.dump(tasks, file, indent=4)
+
+
+tasks = load_tasks()
 
 
 def show_menu():
@@ -22,36 +39,43 @@ while True:
             for index, task in enumerate(tasks, start=1):
                 print(f"{index}. {task}")
 
+
     elif choice == "2":
         task = input("Введите новую задачу: ")
         tasks.append(task)
+        save_tasks(tasks)
         print("Задача добавлена!")
+
 
     elif choice == "3":
         if len(tasks) == 0:
             print("Нет задач для удаления")
+
         else:
             print("\nВаши задачи:")
 
-        for index, task in enumerate(tasks, start=1):
-            print(f"{index}. {task}")
+            for index, task in enumerate(tasks, start=1):
+                print(f"{index}. {task}")
 
-        try:
-            number = int(input("Введите номер задачи для удаления: "))
-            if number > 0 and number <= len(tasks):
-                removed_task = tasks.pop(number - 1)
-                print(f"Удалена задача: {removed_task}")
-            else:
-                print("Такой задачи нет")
-        except ValueError:
-            print("Ошибка: нужно ввести число")
+            try:
+                number = int(input("Введите номер задачи для удаления: "))
 
-        except ValueError:
-            print("Ошибка: нужно ввести число")
+                if number > 0 and number <= len(tasks):
+                    removed_task = tasks.pop(number - 1)
+                    save_tasks(tasks)
+                    print(f"Удалена задача: {removed_task}")
+
+                else:
+                    print("Такой задачи нет")
+
+            except ValueError:
+                print("Ошибка: нужно ввести число")
+
 
     elif choice == "4":
         print("До свидания!")
         break
+
 
     else:
         print("Такого пункта нет")
