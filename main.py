@@ -1,5 +1,5 @@
 from storage import load_tasks, save_tasks
-from task_manager import add_task, delete_task
+from task_manager import add_task, delete_task, show_tasks
 
 
 tasks = load_tasks()
@@ -19,12 +19,7 @@ while True:
     choice = input("Выберите действие: ")
 
     if choice == "1":
-        if len(tasks) == 0:
-            print("У вас пока нет задач")
-        else:
-            print("\nВаши задачи:")
-            for index, task in enumerate(tasks, start=1):
-                print(f"{index}. {task}")
+        show_tasks(tasks)
 
 
     elif choice == "2":

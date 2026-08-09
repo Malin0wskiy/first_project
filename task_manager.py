@@ -25,3 +25,13 @@ def delete_task(tasks):
 
     except ValueError:
         print("Ошибка: нужно ввести число")
+
+
+def show_tasks(tasks):
+    if len(tasks) == 0:
+        print("У вас пока нет задач")
+    else:
+        print("\nВаши задачи:")
+
+        for index, task in enumerate(tasks, start=1):
+            print(f"{index}. {task}")
