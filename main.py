@@ -28,8 +28,11 @@ while True:
 
 
     elif choice == "3":
-        delete_task(tasks)
-        save_tasks(tasks)
+        removed_task = delete_task(tasks)
+
+        if removed_task is not None:
+            save_tasks(tasks)
+            print(f"Удалена задача: {removed_task}")
 
 
     elif choice == "4":

@@ -19,7 +19,7 @@ def delete_task(tasks):
 
         if number > 0 and number <= len(tasks):
             removed_task = tasks.pop(number - 1)
-            print(f"Удалена задача: {removed_task}")
+            return removed_task
         else:
             print("Такой задачи нет")
 
