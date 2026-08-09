@@ -1,5 +1,10 @@
 def add_task(tasks):
     task = input("Введите новую задачу: ")
+
+    if task.strip() == "":
+        print("Ошибка: задача не может быть пустой")
+        return None
+
     tasks.append(task)
     return task
 
