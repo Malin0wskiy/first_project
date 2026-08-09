@@ -23,8 +23,9 @@ while True:
 
 
     elif choice == "2":
-        add_task(tasks)
+        new_task = add_task(tasks)
         save_tasks(tasks)
+        print(f"Задача добавлена: {new_task}")
 
 
     elif choice == "3":

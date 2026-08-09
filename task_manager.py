@@ -1,7 +1,7 @@
 def add_task(tasks):
     task = input("Введите новую задачу: ")
     tasks.append(task)
-    print("Задача добавлена!")
+    return task
 
 
 def delete_task(tasks):
