@@ -9,6 +9,10 @@ def load_tasks():
     except FileNotFoundError:
         return []
 
+    except json.JSONDecodeError:
+        print("Ошибка: файл tasks.json повреждён")
+        return []
+
 
 def save_tasks(tasks):
     with open("tasks.json", "w") as file:
