@@ -1,5 +1,5 @@
 from storage import load_tasks, save_tasks
-from task_manager import add_task, delete_task, show_tasks
+from task_manager import add_task, delete_task, show_tasks, complete_task 
 
 
 tasks = load_tasks()
@@ -10,7 +10,8 @@ def show_menu():
     print("1. Показать задачи")
     print("2. Добавить задачу")
     print("3. Удалить задачу")
-    print("4. Выход")
+    print("4. Отметить задачу выполненной")
+    print("5. Выход")
 
 
 while True:
@@ -39,6 +40,14 @@ while True:
 
 
     elif choice == "4":
+        result = complete_task(tasks)
+
+        if result:
+            save_tasks(tasks)
+            print("Задача отмечена как выполненная")
+
+
+    elif choice == "5":
         print("До свидания!")
         break
 
