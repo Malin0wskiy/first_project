@@ -58,6 +58,29 @@ def complete_task(tasks):
     except ValueError:
         print("Ошибка: нужно ввести число")
 
+def uncomplete_task(tasks):
+    if len(tasks) == 0:
+        print("Нет задач")
+        return
+
+    print("\nВаши задачи:")
+
+    for index, task in enumerate(tasks, start=1):
+        status = "✓" if task["done"] else ""
+        print(f"{index}. {task['text']} {status}")
+
+    try:
+        number = int(input("Введите номер задачи: "))
+
+        if number > 0 and number <= len(tasks):
+            tasks[number - 1]["done"] = False
+            return True
+        else:
+            print("Такой задачи нет")
+
+    except ValueError:
+        print("Ошибка: нужно ввести число")
+
 
 def show_tasks(tasks):
     if len(tasks) == 0:
@@ -68,3 +91,15 @@ def show_tasks(tasks):
         for index, task in enumerate(tasks, start=1):
             status = "✓" if task["done"] else ""
             print(f"{index}. {task['text']} {status}")
+
+
+task = {
+    "text": "Изучить Python",
+    "done": True
+}
+
+print(task)
+
+task["done"] = False
+
+print(task)
